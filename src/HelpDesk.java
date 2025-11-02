@@ -1,14 +1,32 @@
+import java.util.Scanner;
+
 public class HelpDesk {
     public static void main(String[] args) {
-        QueueSystem queue = QueueSystem.getInstance();
+        Scanner input = new Scanner(System.in);
+        
+        System.out.println("PAG-IBIG Centralized Queuing System");
+        
+        // Three help desks obtain the same QueueSystem instance
+        QueueSystem helpDesk1 = QueueSystem.getInstance();
+        QueueSystem helpDesk2 = QueueSystem.getInstance();
+        QueueSystem helpDesk3 = QueueSystem.getInstance();
+        System.out.println("Three help desks are now accepting inquiries.\n");
+        
+        // Each desk requests next number
+        helpDesk1.getNextNumber();
+        helpDesk2.getNextNumber();
+        helpDesk3.getNextNumber();
 
-        // Displays the current number in queue
-        queue.getCurrentNumber();
-        
-        // Displays the next number in queue
-        queue.getNextNumber();
-        
-        // Resets queue and replaces it with a new number as parameter
-        queue.resetQueue(0);
+        // Online queue monitoring
+        QueueSystem monitor = QueueSystem.getInstance();
+        System.out.println("\nOnline Monitoring System");
+        monitor.getCurrentNumber();
+
+        // Resetting the queue
+        helpDesk1.resetQueue(1);
+
+        // Displaying updated number
+        System.out.println("\nOnline Monitoring System");
+        monitor.getCurrentNumber();
     }
 }
